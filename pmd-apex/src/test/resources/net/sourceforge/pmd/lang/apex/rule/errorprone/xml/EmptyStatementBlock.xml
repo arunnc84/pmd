@@ -23,6 +23,19 @@ public class Foo {
         <code><![CDATA[
 public class Foo {
     public void foo() {
+        int i = 0;
+        if(i=0){}
+    }
+}
+        ]]></code>
+    </test-code>
+
+    <test-code>
+        <description>Success case: Empty Statement Block</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+public class Foo {
+    public void foo() {
         system.debug(1);
     }
     public abstract void bar() {}
