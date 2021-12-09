@@ -13,6 +13,5 @@ public class ASTParseErrorTest extends AbstractPLSQLParserTst {
         } catch (Exception ex) {
             assert (ex.getMessage().contains("SELECT"));
         }
-        //as expected the class is failing with
     }
 }
