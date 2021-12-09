@@ -1580,19 +1580,24 @@ ASTSubmultisetCondition SubmultisetCondition() :
     { return jjtThis; }
 }
 
+/*
+Gramer to be updated to include subquery within where clause
+ */
 ASTCompoundCondition CompoundCondition() :
 {}
 {
  (
-   LOOKAHEAD(1) <NOT> { jjtThis.setType(token.getImage()); } Condition()
- |
-   // this might be a expression list
-   LOOKAHEAD("(" SqlExpression() ",") Condition2() (LOOKAHEAD(2) ( <AND> | <OR> ) { jjtThis.setType(token.getImage()); } Condition() )*
- |
-   LOOKAHEAD(1) "(" Condition() ")" (LOOKAHEAD(2) ( <AND> | <OR> ) { jjtThis.setType(token.getImage()); } Condition() )*
- |
-    Condition2() (LOOKAHEAD(2) ( <AND> | <OR> ) { jjtThis.setType(token.getImage()); } Condition() )*
- )
+    LOOKAHEAD(1) <NOT> { jjtThis.setType(token.getImage()); } Condition()
+  |
+    // this might be a expression list
+    LOOKAHEAD("(" SqlExpression() ",") Condition2() (LOOKAHEAD(2) ( <AND> | <OR> ) { jjtThis.setType(token.getImage()); } Condition() )*
+  |
+    LOOKAHEAD("(" Subquery() ",")
+  |
+    LOOKAHEAD(1) "(" Condition() ")" (LOOKAHEAD(2) ( <AND> | <OR> ) { jjtThis.setType(token.getImage()); } Condition() )*
+  |
+     Condition2() (LOOKAHEAD(2) ( <AND> | <OR> ) { jjtThis.setType(token.getImage()); } Condition() )*
+  )
     { return jjtThis; }
 }
 

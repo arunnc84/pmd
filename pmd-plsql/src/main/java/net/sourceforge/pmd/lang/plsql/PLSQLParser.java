@@ -61,7 +61,10 @@ public class PLSQLParser extends AbstractParser {
             return createPLSQLParser(new StringReader(sourcecode)).Input(sourcecode);
         } catch (IOException e) {
             throw new ParseException(e);
-        }
+        } //catch (Exception exception){
+//            //String exText = exception.getMessage();
+//            //need to check how this can be set to the report which is set as output
+//        }
     }
 
     @Override
